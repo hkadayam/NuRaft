@@ -65,6 +65,20 @@ public:
     static ptr<buffer> clone(const buffer& buf);
 
     /**
+     * Expand the current buffer to new size (which is expected to
+     * bigger than current size) and return a new buffer. It will copy
+     * the existing buffer.
+     *
+     * WARNING: It will still retain the current position of the passed
+     * buffer and the new ptr buffer (i.e. ret_buf->pos() == buf->pos())
+     *
+     * @param buf Pointer to buffer which will be realloced
+     * @param new_size New size of the buffer
+     * @return Expanded buffer instance
+     */
+    static ptr<buffer> expand(const buffer& buf, uint32_t new_size);
+
+    /**
      * Get total size of entire buffer container, including meta section.
      *
      * @return Size of container.
@@ -254,8 +268,8 @@ public:
     void put_raw(const byte* ba, size_t len);
 };
 
-std::ostream& operator << (std::ostream& out, buffer& buf);
-std::istream& operator >> (std::istream& in, buffer& buf);
+std::ostream& operator<<(std::ostream& out, buffer& buf);
+std::istream& operator>>(std::istream& in, buffer& buf);
 
-}
+} // namespace nuraft
 #endif //_BUFFER_HXX_
