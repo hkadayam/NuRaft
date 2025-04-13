@@ -11,6 +11,7 @@ class NuRaftConan(ConanFile):
     # Metadata
     name = "nuraft"
     package_type = "library"
+    version = "2.4.5"
     license = "Apache-2.0"
     description = "RAFT protocol library."
     homepage = "https://github.com/ebay/NuRaft.git"
@@ -36,7 +37,7 @@ class NuRaftConan(ConanFile):
         "build_examples":True
     }
 
-    exports_sources = "CMakeLists.txt", "NuRaftConfig.cmake.in", "src/*", "include/*", "cmake/*", "LICENSE"
+    exports_sources = "CMakeLists.txt", "NuRaftConfig.cmake.in", "src/*", "scripts/*", "include/*", "cmake/*", "examples/*", "tests/*", "LICENSE"
 
     def configure(self):
         if self.options.shared:
